@@ -16,7 +16,7 @@ const RequestPasswordReset = () => {
     } catch (error) {
       setMessage('');
       setError(error.response ? error.response.data.msg : 'Server error');
-    }
+    }    
   };
 
   return (
@@ -45,3 +45,4 @@ const RequestPasswordReset = () => {
 };
 
 export default RequestPasswordReset;
+     
