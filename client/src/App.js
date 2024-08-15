@@ -12,6 +12,7 @@ import InternationalTransfer from './components/InternationalTransfer';
 import RequestPasswordReset from './components/RequestPasswordReset';
 import ResetPassword from './components/ResetPassword';
 import AccountBalance from './components/AccountBalance';
+import PrivateRoute from './components/PrivateRoute';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -31,8 +32,16 @@ const App = () => {
         <Navigation isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
         <main style={{ flex: 1, padding: '1rem', paddingTop: '64px' }}>
           <Routes>
-            <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
-            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={
+              <PrivateRoute>
+                <Login setIsAuthenticated={setIsAuthenticated} />
+              </PrivateRoute>
+              } />
+            <Route path="/register" element={
+               <PrivateRoute>
+              <Register />
+              </PrivateRoute>
+          } />
             <Route path="/dashboard" element={isAuthenticated ? <Dashboard /> : <Home />} />
             <Route path="/" element={<Home />} />
             <Route path="/transfer" element={isAuthenticated ? <InternationalTransfer /> : <Home />} />
