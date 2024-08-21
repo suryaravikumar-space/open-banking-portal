@@ -1,46 +1,139 @@
-import React, { useState } from 'react';
-import { Container, Paper, Typography, TextField, Button, Alert } from '@mui/material';
+import React, { useState } from "react";
+import {
+  TextField,
+  Button,
+  Container,
+  Paper,
+  Typography,
+  Alert,
+  MenuItem,
+  FormControl,
+  InputLabel,
+  Select,
+} from "@mui/material";
 
-const OpenNewAccount = () => {
-  const [accountName, setAccountName] = useState('');
-  const [initialDeposit, setInitialDeposit] = useState('');
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
+const AccountForm = () => {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    age: "",
+    pan: "",
+    gender: "",
+    accountType: "",
+    minBalance: "",
+  });
 
-  const handleSubmit = (e) => {
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission, e.g., call the backend API to create a new account
-    // If successful, show success message and reset form fields
-    // If failed, show error message
-    setSuccess('Account opened successfully!');
-    setError('');
+    try {
+      // Simulate an API call with Axios or other method
+      // Example: const response = await axios.post('/api/accounts', formData);
+      // For demonstration purposes, we'll just simulate a success scenario
+      setMessage("Form submitted successfully!");
+      setError("");
+    } catch (error) {
+      setMessage("");
+      setError("Form submission failed. Please try again.");
+    }
   };
 
   return (
     <Container maxWidth="sm">
       <Paper elevation={3} sx={{ p: 4 }}>
         <Typography variant="h5" gutterBottom>
-          Open New Savings Account
+          Account Form
         </Typography>
+        {message && <Alert severity="success">{message}</Alert>}
         {error && <Alert severity="error">{error}</Alert>}
-        {success && <Alert severity="success">{success}</Alert>}
         <form onSubmit={handleSubmit}>
           <TextField
-            label="Account Name"
-            value={accountName}
-            onChange={(e) => setAccountName(e.target.value)}
+            label="First Name"
+            name="firstName"
+            value={formData.firstName}
+            onChange={handleChange}
             fullWidth
             margin="normal"
+            required
           />
           <TextField
-            label="Initial Deposit"
-            value={initialDeposit}
-            onChange={(e) => setInitialDeposit(e.target.value)}
+            label="Last Name"
+            name="lastName"
+            value={formData.lastName}
+            onChange={handleChange}
             fullWidth
             margin="normal"
+            required
+          />
+          <TextField
+            label="Age"
+            type="number"
+            name="age"
+            value={formData.age}
+            onChange={handleChange}
+            fullWidth
+            margin="normal"
+            required
+          />
+          <TextField
+            label="PAN"
+            name="pan"
+            value={formData.pan}
+            onChange={handleChange}
+            fullWidth
+            margin="normal"
+            required
+          />
+          <FormControl fullWidth margin="normal" required>
+            <InputLabel>Gender</InputLabel>
+            <Select
+              name="gender"
+              value={formData.gender}
+              onChange={handleChange}
+              label="Gender"
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value="male">Male</MenuItem>
+              <MenuItem value="female">Female</MenuItem>
+              <MenuItem value="other">Other</MenuItem>
+            </Select>
+          </FormControl>
+          <FormControl fullWidth margin="normal" required>
+            <InputLabel>Account Type</InputLabel>
+            <Select
+              name="accountType"
+              value={formData.accountType}
+              onChange={handleChange}
+              label="Account Type"
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value="savings">Savings</MenuItem>
+              <MenuItem value="current">Current</MenuItem>
+            </Select>
+          </FormControl>
+          <TextField
+            label="Minimum Balance"
+            type="number"
+            name="minBalance"
+            value={formData.minBalance}
+            onChange={handleChange}
+            fullWidth
+            margin="normal"
+            required
           />
           <Button type="submit" variant="contained" color="primary" fullWidth>
-            Open Account
+            Submit
           </Button>
         </form>
       </Paper>
@@ -48,4 +141,4 @@ const OpenNewAccount = () => {
   );
 };
 
-export default OpenNewAccount;
+export default AccountForm;
