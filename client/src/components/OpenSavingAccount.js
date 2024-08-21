@@ -97,7 +97,7 @@ const AccountForm = () => {
               name="gender"
               value={formData.gender}
               onChange={handleChange}
-              label="Gender"
+              
             >
               <MenuItem value="">
                 <em>None</em>
@@ -113,7 +113,7 @@ const AccountForm = () => {
               name="accountType"
               value={formData.accountType}
               onChange={handleChange}
-              label="Account Type"
+        
             >
               <MenuItem value="">
                 <em>None</em>
