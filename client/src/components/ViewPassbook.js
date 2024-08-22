@@ -1,30 +1,54 @@
-import React from 'react';
-import { Container, Paper, Typography } from '@mui/material';
+import React, { useState } from 'react';
+import { 
+  Container, 
+  Paper, 
+  Typography, 
+  Box, 
+  ThemeProvider, 
+  createTheme 
+} from '@mui/material';
+import UserInfo from './UserInfo';
+import TransactionList from './TransactionList';
+import FilterOptions from './FilterOptions';
 
-const ViewPassbook = () => {
-  // Example data, replace with data fetched from backend
-  const transactions = [
-    { date: '2024-08-15', description: 'Deposit', amount: 1000, balance: 1000 },
-    { date: '2024-08-16', description: 'Withdrawal', amount: -500, balance: 500 },
-    // More transactions...
-  ];
+// Create a theme
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#0056b3', // SBI blue color
+    },
+  },
+});
+
+const Passbook = () => {
+  const [dateRange, setDateRange] = useState({ start: null, end: null });
+  const [transactionType, setTransactionType] = useState('all');
 
   return (
-    <Container maxWidth="md">
-      <Paper elevation={3} sx={{ p: 4 }}>
-        <Typography variant="h5" gutterBottom>
-          Passbook
-        </Typography>
-        <ul>
-          {transactions.map((transaction, index) => (
-            <li key={index}>
-              {transaction.date} - {transaction.description} - {transaction.amount} - {transaction.balance}
-            </li>
-          ))}
-        </ul>
-      </Paper>
-    </Container>
+    <ThemeProvider theme={theme}>
+      <Container maxWidth="md">
+        <Paper elevation={3} sx={{ p: 3, mt: 3 }}>
+          <Box display="flex" justifyContent="space-between" alignItems="center" mb={3}>
+            <Typography variant="h4" component="h1" color="primary">
+              SBI Passbook
+            </Typography>
+            <img src="/sbi-logo.png" alt="SBI Logo" style={{ height: 50 }} />
+          </Box>
+          <UserInfo />
+          <FilterOptions 
+            dateRange={dateRange} 
+            setDateRange={setDateRange}
+            transactionType={transactionType}
+            setTransactionType={setTransactionType}
+          />
+          <TransactionList 
+            dateRange={dateRange}
+            transactionType={transactionType}
+          />
+        </Paper>
+      </Container>
+    </ThemeProvider>
   );
 };
 
-export default ViewPassbook;
+export default Passbook;

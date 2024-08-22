@@ -59,7 +59,7 @@ const Navigation = ({ isAuthenticated, setIsAuthenticated }) => {
               <MenuItem component={Link} to="/saving-account/open" onClick={handleMenuClose}>Open New Account</MenuItem>
               <MenuItem component={Link} to="/saving-account/passbook" onClick={handleMenuClose}>View Passbook</MenuItem>
               <MenuItem component={Link} to="/saving-account/deposit" onClick={handleMenuClose}>Deposit Cash</MenuItem>
-              <MenuItem component={Link} to="/saving-account/last-10" onClick={handleMenuClose}>View Last 10 Transactions</MenuItem>
+              <MenuItem component={Link} to="/saving-account/transactions" onClick={handleMenuClose}>View Last 10 Transactions</MenuItem>
               <MenuItem component={Link} to="/saving-account/generate-pdf" onClick={handleMenuClose}>Generate PDF</MenuItem>
             </Menu>
             <Button color="inherit" onClick={handleLogout}>
