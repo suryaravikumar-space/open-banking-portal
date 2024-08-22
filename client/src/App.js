@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import { CssBaseline } from "@mui/material";
-import Header from "./components/Header";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import Login from "./components/Login";
@@ -39,9 +38,13 @@ const App = () => {
   return (
     <Router>
       <CssBaseline />
-      <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
-        <Header />
-        <Navigation isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
+      <div
+        style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
+      >
+        <Navigation
+          isAuthenticated={isAuthenticated}
+          setIsAuthenticated={setIsAuthenticated}
+        />
         <main style={{ flex: 1, padding: "1rem", paddingTop: "64px" }}>
           <Routes>
             <Route path="/" element={<Home />} />
