@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { TextField, Button, Container, Paper, Typography, Alert } from '@mui/material';
+import { TextField, Button, Container, Paper, Typography, Alert, Link } from '@mui/material';
 import { useParams } from 'react-router-dom';
 
 const ResetPassword = () => {
@@ -45,6 +45,9 @@ const ResetPassword = () => {
             Submit
           </Button>
         </form>
+        <Typography variant="body2" sx={{ mt: 2, textAlign: 'center' }}>
+          Remembered your password? <Link href="/login">Login here</Link>
+        </Typography>
       </Paper>
     </Container>
   );

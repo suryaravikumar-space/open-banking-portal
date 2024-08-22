@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { TextField, Button, Container, Paper, Typography, Alert } from '@mui/material';
 import axios from 'axios';
 
 const Register = () => {
@@ -6,6 +7,7 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+  const [error, setError] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -15,34 +17,54 @@ const Register = () => {
       setName('');
       setEmail('');
       setPassword('');
-      setTimeout(() => setMessage(''), 5000); // Clear message after 5 seconds
+      setError('');
     } catch (error) {
-      console.error(error);
-      setMessage('Registration failed. Please try again.');
-      setTimeout(() => setMessage(''), 5000); // Clear message after 5 seconds
+      setError('Registration failed. Please try again.');
+      setMessage('');
     }
   };
 
   return (
-    <div>
-      <h2>Register</h2>
-      {message && <p>{message}</p>}
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name</label>
-          <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
-        </div>
-        <div>
-          <label>Email</label>
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-        </div>
-        <div>
-          <label>Password</label>
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-        </div>
-        <button type="submit">Register</button>
-      </form>
-    </div>
+    <Container maxWidth="sm">
+      <Paper elevation={3} sx={{ p: 4 }}>
+        <Typography variant="h5" gutterBottom>
+          Register
+        </Typography>
+        {message && <Alert severity="success">{message}</Alert>}
+        {error && <Alert severity="error">{error}</Alert>}
+        <form onSubmit={handleSubmit}>
+          <TextField
+            label="Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            fullWidth
+            margin="normal"
+            required
+          />
+          <TextField
+            label="Email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            fullWidth
+            margin="normal"
+            required
+          />
+          <TextField
+            label="Password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            fullWidth
+            margin="normal"
+            required
+          />
+          <Button type="submit" variant="contained" color="primary" fullWidth>
+            Register
+          </Button>
+        </form>
+      </Paper>
+    </Container>
   );
 };
 
