@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { TextField, Button, Container, Paper, Typography, Alert } from '@mui/material';
+import { TextField, Button, Container, Paper, Typography, Alert, Link } from '@mui/material';
 import axios from 'axios';
+
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -62,6 +63,10 @@ const Register = () => {
           <Button type="submit" variant="contained" color="primary" fullWidth>
             Register
           </Button>
+          <Typography variant="body2" sx={{ mt: 2 }}>
+          <Link href="/login">{"Already have Account?"} </Link>
+         
+        </Typography>
         </form>
       </Paper>
     </Container>

@@ -49,6 +49,10 @@ const Login = ({ setIsAuthenticated }) => {
           </Button>
         </form>
         <Typography variant="body2" sx={{ mt: 2 }}>
+          <Link href="/register">{"Don't have Account?"} </Link>
+         
+        </Typography>
+        <Typography variant="body2" sx={{ mt: 2 }}>
           <Link href="/request-password-reset">Forgot Password?</Link>
         </Typography>
       </Paper>
