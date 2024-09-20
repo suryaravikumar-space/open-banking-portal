@@ -96,6 +96,7 @@ const AccountForm = () => {
             <Select
               name="gender"
               value={formData.gender}
+              label="Gender"
               onChange={handleChange}
               
             >
@@ -112,6 +113,7 @@ const AccountForm = () => {
             <Select
               name="accountType"
               value={formData.accountType}
+              label="Account Type"
               onChange={handleChange}
         
             >
